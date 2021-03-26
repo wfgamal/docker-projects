@@ -1,0 +1,20 @@
+FROM centos
+ARG user=application
+
+ENV HTML /var/www/html 
+RUN yum -y install httpd unzip
+COPY beginner-html-site-styled-gh-pages.zip $HTML
+
+WORKDIR /var/www/html
+RUN unzip $PWD/beginner-html-site-styled-gh-pages.zip
+
+RUN mv beginner-html-site-styled-gh-pages/*  $HTML
+
+RUN rm -rf beginner-html-site-styled-gh-pages.zip 
+
+
+RUN useradd $user && chown $user:$user $HTML -R
+
+USER root 
+
+CMD apachectl -DFOREGROUND

@@ -1,0 +1,33 @@
+version: '3'
+services:
+  jenkins:
+    container_name: jenkins
+    image: jenkins-ansible-docker
+    ports:
+      - "8080:8080"
+    volumes:
+      - "vol_jenkins:/var/jenkins_home"
+    networks:
+      - net_jenkins
+  remote_host:
+    container_name: remote_host
+    image: remote_centos7
+    networks:
+      - net_jenkins
+    volumes:
+      - "vol_remote:/tmp/"
+  db_host:
+    container_name: db_host
+    image: mysql:5.7
+    environment:
+      - "MYSQL_ROOT_PASSWORD=1234"
+    networks:
+      - net_jenkins
+    volumes:
+      - "vol_db:/var/lib/mysql"          
+volumes:
+  vol_jenkins:
+  vol_db:
+  vol_remote:
+networks:
+  net_jenkins:           

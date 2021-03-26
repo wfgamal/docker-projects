@@ -1,0 +1,5 @@
+
+- hosts: remote_host
+  tasks:
+    - shell: echo "hallo ansible" > /tmp/ansible.txt
+  

@@ -1,0 +1,11 @@
+version: '3'
+services: 
+  web:
+    container_name: apache
+    image: new-image
+    build: 
+      context: .   
+      dockerfile: dockerfile
+      
+    
+      
