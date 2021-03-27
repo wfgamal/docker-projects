@@ -24,7 +24,14 @@ services:
     networks:
       - net_jenkins
     volumes:
-      - "vol_db:/var/lib/mysql"          
+      - "vol_db:/var/lib/mysql"
+  web:
+    container_name: web
+    image: web
+    ports:
+      - "80:80"
+    networks:
+      - net_jenkins                   
 volumes:
   vol_jenkins:
   vol_db:
